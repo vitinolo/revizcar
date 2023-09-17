@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class CarCrudController extends AbstractCrudController
@@ -30,6 +31,7 @@ class CarCrudController extends AbstractCrudController
             TextField::new('puissance'),       
             TextField::new('carburant'),       
             DateField::new('createdAt')->onlyOnIndex(),
+            AssociationField::new('users'),
         ];
     }
     public function configureActions(Actions $actions): Actions

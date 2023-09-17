@@ -39,6 +39,10 @@ class Car
     #[Gedmo\Timestampable(on:'create')]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'cars')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $users = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,4 +143,17 @@ class Car
 
         return $this;
     } */
+
+    public function getUsers(): ?user
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?user $users): static
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
 }
