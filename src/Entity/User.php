@@ -44,9 +44,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Car::class)]
     private Collection $cars;
+
     public function __toString(){
         return $this->lastname;
     }
+    
     public function __construct()
     {
         $this->cars = new ArrayCollection();

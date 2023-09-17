@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CarRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -42,6 +44,17 @@ class Car
     #[ORM\ManyToOne(inversedBy: 'cars')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $users = null;
+
+    #[ORM\OneToMany(mappedBy: 'cars', targetEntity: Revision::class)]
+    private Collection $revisions;
+
+    public function __toString(){
+        return $this->modele;
+    }
+    public function __construct()
+    {
+        $this->revisions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -152,6 +165,36 @@ class Car
     public function setUsers(?user $users): static
     {
         $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Revision>
+     */
+    public function getRevisions(): Collection
+    {
+        return $this->revisions;
+    }
+
+    public function addRevision(Revision $revision): static
+    {
+        if (!$this->revisions->contains($revision)) {
+            $this->revisions->add($revision);
+            $revision->setCars($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRevision(Revision $revision): static
+    {
+        if ($this->revisions->removeElement($revision)) {
+            // set the owning side to null (unless already changed)
+            if ($revision->getCars() === $this) {
+                $revision->setCars(null);
+            }
+        }
 
         return $this;
     }

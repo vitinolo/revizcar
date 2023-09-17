@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Car;
 use App\Entity\User;
+use App\Entity\Revision;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -39,6 +40,13 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::subMenu('Cars', 'fa-solid fa-book-journal-whills')->setSubItems([
                 MenuItem::linkToCrud('Create Car', 'fas fa-plus-circle', Car::class)->setAction(Crud::PAGE_NEW),
                 MenuItem::linkToCrud('Show Car', 'fas fa-eye', Car::class),
+            ]);
+        }
+        if ($this->isGranted('ROLE_EDITOR')){
+            yield MenuItem::section('Revisions');
+            yield MenuItem::subMenu('Revisions', 'fa-solid fa-book-journal-whills')->setSubItems([
+                MenuItem::linkToCrud('Create Revision', 'fas fa-plus-circle', Revision::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Show Revision', 'fas fa-eye', Revision::class),
             ]);
         }
         /* if ($this->isGranted('ROLE_EDITOR')){
