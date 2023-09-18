@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -26,6 +27,11 @@ class CarCrudController extends AbstractCrudController
             TextField::new('marque'),
             TextField::new('modele'),       
             TextField::new('immat'),
+            $image = ImageField::new('image')
+            ->setUploadDir('public/divers/images')
+            ->setBasePath('divers/images')
+            ->setSortable(false)
+            ->setFormTypeOption('required',false)->setColumns('col-md-2'),
             TextField::new('mec'),       
             TextField::new('image'),       
             TextField::new('puissance'),       
