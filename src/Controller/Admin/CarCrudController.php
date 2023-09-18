@@ -32,8 +32,7 @@ class CarCrudController extends AbstractCrudController
             ->setBasePath('divers/images')
             ->setSortable(false)
             ->setFormTypeOption('required',false)->setColumns('col-md-2'),
-            TextField::new('mec'),       
-            TextField::new('image'),       
+            TextField::new('mec'),             
             TextField::new('puissance'),       
             TextField::new('carburant'),       
             DateField::new('createdAt')->onlyOnIndex(),

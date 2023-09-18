@@ -16,4 +16,9 @@ class CarController extends AbstractController
             'car' => $car
         ]);
     }
+    #[Route('/home', name: 'app_home')]
+    public function home(): Response 
+    {  
+        return $this->render('car/homeCar.html.twig', []);
+    }
 }
