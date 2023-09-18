@@ -7,7 +7,7 @@
         <div class="card m-3" style="width: 18rem; box-shadow: 1px 1px 1px">
             <div class="card-body">
             <h5 class="card-title">{{ car.marque }} {{ car.modele }}</h5>
-            <img src="{{ car.image }}" class="card-img-top" alt="image voiture" />
+            <img src="{{ asset('divers/images/' ~ car.image) }}" class="card-img-top" alt="image voiture" />
             <p class="card-text">{{ car.immat }}</p>
             <p class="card-text">{{ car.mec }}</p>
             <p class="card-text">{{ car.puissance }}cv</p>
