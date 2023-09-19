@@ -7,12 +7,9 @@
             <div class="card m-3" style="width: 18rem; box-shadow: 1px 1px 1px">
                 <div class="card-body">
                 <h5 class="card-title">{{ car.marque }} {{ car.modele }}</h5>
-                <img src="{{ asset('divers/images/' ~ car.image) }}" class="img-fluid card-img-top" style="height:150px;" alt="image voiture" />
+                <a href="{{ path('showone', {'id':car.id})}}"><img src="{{ asset('divers/images/' ~ car.image) }}" class="img-fluid card-img-top" style="height:150px;" alt="image voiture" /></a>
                 <p class="card-text">{{ car.immat }}</p>
-                <p class="card-text">{{ car.mec }}</p>
-                <p class="card-text">{{ car.puissance }}cv</p>
-                <p class="card-text">{{ car.carburant }}</p>
-                <a href="{{ path('redirection_route') }}" class="btn btn-primary">Révisions</a>
+                <a href="" class="btn btn-primary">Révisions</a>
                 <a href="#" class="btn btn-secondary">Réparations</a>
                 </div>
             </div>

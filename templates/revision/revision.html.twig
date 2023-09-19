@@ -7,12 +7,10 @@
         <div class="card m-3" style="width: 18rem; box-shadow: 1px 1px 1px">
             <div class="card-body">
             <h5 class="card-title">Révisions</h5>
-            {# <img src="{{ revision.image }}" class="card-img-top" alt="image voiture" /> #}
             <p class="card-text">{{ revision.datereviz }}</p>
             <p class="card-text">{{ revision.kilometrage }}</p>
             <p class="card-text">{{ revision.filtre }}</p>
             <p class="card-text">{{ revision.huile }}</p>
-            <a href="car/car.html.twig" class="btn btn-primary">Révisions</a>
             </div>
         </div>
         {% endfor %}
