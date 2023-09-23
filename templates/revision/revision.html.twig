@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %} 
-{% block title %}Hello MyCars!{% endblock %} 
+{% block title %}Hello My Revisions!{% endblock %} 
 {% block body %}
-    <div class="container">
+    <div class="container-fluid p-5"  style="background-image:url('divers/images/garage2.jpg');background-size: cover;">
         <div class="row mt-5 mb-5">
         {% for revision in revision %}
-        <div class="card m-3" style="width: 18rem; box-shadow: 1px 1px 1px">
+        <div class="card m-3" style="width: 18rem; box-shadow: 5px 5px 1px">
             <div class="card-body">
-            <h5 class="card-title">Révisions</h5>
-            <p class="card-text">{{ revision.datereviz }}</p>
-            <p class="card-text">{{ revision.kilometrage }}</p>
-            <p class="card-text">{{ revision.filtre }}</p>
-            <p class="card-text">{{ revision.huile }}</p>
+                <h5 class="card-title">Révision faite le {{ revision.datereviz }}</h5>
+                <p class="card-text">à {{ revision.kilometrage }} kms</p>
+                <p class="card-text">Huile: {{ revision.huile }}</p>
+                <p class="card-text">Filtres changés: {{ revision.filtre }}</p>
             </div>
         </div>
         {% endfor %}

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Car;
 use App\Entity\User;
 use App\Entity\Revision;
+use App\Entity\Reparation;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -37,25 +38,25 @@ class DashboardController extends AbstractDashboardController
         
         if ($this->isGranted('ROLE_EDITOR')){
             yield MenuItem::section('Cars');
-            yield MenuItem::subMenu('Cars', 'fa-solid fa-book-journal-whills')->setSubItems([
+            yield MenuItem::subMenu('Cars', 'fa-solid fa-car')->setSubItems([
                 MenuItem::linkToCrud('Create Car', 'fas fa-plus-circle', Car::class)->setAction(Crud::PAGE_NEW),
                 MenuItem::linkToCrud('Show Car', 'fas fa-eye', Car::class),
             ]);
         }
         if ($this->isGranted('ROLE_EDITOR')){
             yield MenuItem::section('Revisions');
-            yield MenuItem::subMenu('Revisions', 'fa-solid fa-book-journal-whills')->setSubItems([
+            yield MenuItem::subMenu('Revisions', 'fa-solid fa-wrench')->setSubItems([
                 MenuItem::linkToCrud('Create Revision', 'fas fa-plus-circle', Revision::class)->setAction(Crud::PAGE_NEW),
                 MenuItem::linkToCrud('Show Revision', 'fas fa-eye', Revision::class),
             ]);
         }
-        /* if ($this->isGranted('ROLE_EDITOR')){
-            yield MenuItem::section('Books');
-            yield MenuItem::subMenu('Books', 'fa-solid fa-book')->setSubItems([
-                MenuItem::linkToCrud('Create Book', 'fas fa-plus-circle', Book::class)->setAction(Crud::PAGE_NEW),
-                MenuItem::linkToCrud('Show Book', 'fas fa-eye', Book::class),
+        if ($this->isGranted('ROLE_EDITOR')){
+            yield MenuItem::section('Reparations');
+            yield MenuItem::subMenu('Reparations', 'fa-solid fa-screwdriver-wrench')->setSubItems([
+                MenuItem::linkToCrud('Create reparation', 'fas fa-plus-circle', reparation::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Show reparation', 'fas fa-eye', reparation::class),
             ]);
-        } */
+        }
         if ($this->isGranted('ROLE_ADMIN')){
             yield MenuItem::section('Users');
             yield MenuItem::subMenu('Users', 'fa fa-user-circle')->setSubItems([
@@ -63,12 +64,5 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Show User', 'fas fa-eye', User::class),
             ]);
         }
-        /* if ($this->isGranted('ROLE_ADMIN')){
-            yield MenuItem::section('Genders');
-            yield MenuItem::subMenu('Genders', 'fa-solid fa-sort')->setSubItems([
-                MenuItem::linkToCrud('Create Gender', 'fas fa-plus-circle', Gender::class)->setAction(Crud::PAGE_NEW),
-                MenuItem::linkToCrud('Show Gender', 'fas fa-eye', Gender::class),
-            ]);
-        } */
     }
 }

@@ -48,12 +48,16 @@ class Car
     #[ORM\OneToMany(mappedBy: 'cars', targetEntity: Revision::class)]
     private Collection $revisions;
 
+    #[ORM\OneToMany(mappedBy: 'Cars', targetEntity: Reparation::class)]
+    private Collection $reparations;
+
     public function __toString(){
         return $this->modele;
     }
     public function __construct()
     {
         $this->revisions = new ArrayCollection();
+        $this->reparations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,6 +197,36 @@ class Car
             // set the owning side to null (unless already changed)
             if ($revision->getCars() === $this) {
                 $revision->setCars(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reparation>
+     */
+    public function getReparations(): Collection
+    {
+        return $this->reparations;
+    }
+
+    public function addReparation(Reparation $reparation): static
+    {
+        if (!$this->reparations->contains($reparation)) {
+            $this->reparations->add($reparation);
+            $reparation->setCars($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReparation(Reparation $reparation): static
+    {
+        if ($this->reparations->removeElement($reparation)) {
+            // set the owning side to null (unless already changed)
+            if ($reparation->getCars() === $this) {
+                $reparation->setCars(null);
             }
         }
 

@@ -20,7 +20,7 @@ class Revision
     #[ORM\Column(length: 20)]
     private ?string $kilometrage = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 200)]
     private ?string $filtre = null;
 
     #[ORM\Column(length: 40)]
@@ -33,6 +33,10 @@ class Revision
     #[ORM\ManyToOne(inversedBy: 'revisions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Car $cars = null;
+
+    public function __toString(){
+        return $this->datereviz;
+    }
 
     public function getId(): ?int
     {

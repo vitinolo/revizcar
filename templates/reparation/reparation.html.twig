@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %} 
+{% block title %}Hello My Reparations!{% endblock %} 
+{% block body %}
+    <div class="container-fluid p-5" style="background-image:url('divers/images/garage.jpg');background-size: cover;">
+        <div class="row mt-5 mb-5">
+        {% for reparation in reparation %}
+        <div class="card m-3" style="width: 18rem; box-shadow: 5px 5px 1px">
+            <div class="card-body">
+                <h5 class="card-title">Réparation faite le {{ reparation.daterep }}</h5>
+                <p class="card-text">à {{ reparation.kilometrage }} kms</p>
+                <p class="card-text">Réparation: {{ reparation.nature }}</p>
+                <p class="card-text">Prix: {{ reparation.prix }} €</p>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

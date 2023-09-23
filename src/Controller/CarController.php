@@ -33,4 +33,55 @@ class CarController extends AbstractController
         'car'=> $car,
       ]);
     }
+
+    //route et affichage des révisions d'une voiture
+    #[Route('/revisions{id}', name: 'revisions', requirements: ['id'=> '\d+'])]
+
+    public function revisions($id, CarRepository $repo): Response 
+    {   
+        // Récupérer la voiture par son ID
+        $car = $repo->find($id);
+
+        // Vérifier si la voiture existe
+        if (!$car) {
+            throw $this->createNotFoundException('La voiture demandée n\'existe pas.');
+        }
+        
+        // Récupérer les révisions associées à cette voiture, triées par ordre décroissant de datereviz
+        $revisions = $car->getRevisions()->toArray();
+
+        usort($revisions, function($a, $b) {
+            return $b->getDatereviz() <= $a->getDatereviz();
+        });
+
+        return $this->render('revision/revision.html.twig', [
+            'revision' => $revisions,
+        ]);
+    }
+
+    //route et affichage des réparations d'une voiture
+    #[Route('/reparations{id}', name: 'reparations', requirements: ['id'=> '\d+'])]
+
+    public function reparations($id, CarRepository $repo): Response 
+    {   
+        // Récupérer la voiture par son ID
+        $car = $repo->find($id);
+
+        // Vérifier si la voiture existe
+        if (!$car) {
+            throw $this->createNotFoundException('La voiture demandée n\'existe pas.');
+        }
+        
+        // Récupérer les révisions associées à cette voiture, triées par ordre décroissant de datereviz
+        $reparations = $car->getReparations()->toArray();
+
+        usort($reparations, function($c, $d) {
+            return $d->getDaterep() <= $c->getDaterep();
+        });
+
+        return $this->render('reparation/reparation.html.twig', [
+            'reparation' => $reparations,
+        ]);
+    }
+    
 }

@@ -40,6 +40,8 @@ security:
         - { path: '^/admin/', roles: ROLE_SUPER_ADMIN }
         - { path: '^/admin/', roles: ROLE_ADMIN }
         - { path: '^/admin/car/', roles: ROLE_EDITOR }
+        - { path: '^/admin/revision/', roles: ROLE_EDITOR }
+        - { path: '^/admin/reparation/', roles: ROLE_EDITOR }
         - { path: '^/car', roles: ROLE_USER }
 
     role_hierarchy:

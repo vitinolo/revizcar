@@ -9,8 +9,8 @@
                 <h5 class="card-title">{{ car.marque }} {{ car.modele }}</h5>
                 <a href="{{ path('showone', {'id':car.id})}}"><img src="{{ asset('divers/images/' ~ car.image) }}" class="img-fluid card-img-top" style="height:150px;" alt="image voiture" /></a>
                 <p class="card-text">{{ car.immat }}</p>
-                <a href="" class="btn btn-primary">Révisions</a>
-                <a href="#" class="btn btn-secondary">Réparations</a>
+                <a href="{{ path('revisions',{'id':car.id})}}" class="btn btn-primary">Révisions</a>
+                <a href="{{ path('reparations',{'id':car.id})}}" class="btn btn-secondary">Réparations</a>
                 </div>
             </div>
             {% endfor %}

@@ -45,6 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Car::class)]
     private Collection $cars;
 
+    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Reparation::class)]
+    private Collection $reparations;
+
     public function __toString(){
         return $this->lastname;
     }
@@ -52,6 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->cars = new ArrayCollection();
+        $this->reparations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -184,6 +188,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($car->getUsers() === $this) {
                 $car->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reparation>
+     */
+    public function getReparations(): Collection
+    {
+        return $this->reparations;
+    }
+
+    public function addReparation(Reparation $reparation): static
+    {
+        if (!$this->reparations->contains($reparation)) {
+            $this->reparations->add($reparation);
+            $reparation->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReparation(Reparation $reparation): static
+    {
+        if ($this->reparations->removeElement($reparation)) {
+            // set the owning side to null (unless already changed)
+            if ($reparation->getUsers() === $this) {
+                $reparation->setUsers(null);
             }
         }
 

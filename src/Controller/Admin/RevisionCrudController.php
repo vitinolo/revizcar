@@ -23,12 +23,12 @@ class RevisionCrudController extends AbstractCrudController
     {
         return [
             IntegerField::new('id')->onlyOnIndex(),
+            AssociationField::new('cars'),
             TextField::new('datereviz'),
             TextField::new('kilometrage'),       
-            TextField::new('filtre'),
             TextField::new('huile'),             
+            TextField::new('filtre'),
             DateField::new('createdAt')->onlyOnIndex(),
-            AssociationField::new('cars'),
         ];
     }
     public function configureActions(Actions $actions): Actions
