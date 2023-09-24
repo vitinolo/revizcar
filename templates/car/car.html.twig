@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %} 
 {% block title %}Hello MyCars!{% endblock %} 
 {% block body %}
-    <div class="container">
-        <div class="row mt-5 mb-5">
+    <div class="container" style="background-image:url('divers/images/cars.jpg');background-size: cover;background-position: center;">
+        <div class="row d-flex justify-content-center p-3">
             {% for car in car %}
-            <div class="card m-3" style="width: 18rem; box-shadow: 1px 1px 1px">
+            <div class="card m-5 col-md-3" style="box-shadow: 10px 10px 7px">
                 <div class="card-body">
                 <h5 class="card-title">{{ car.marque }} {{ car.modele }}</h5>
-                <a href="{{ path('showone', {'id':car.id})}}"><img src="{{ asset('divers/images/' ~ car.image) }}" class="img-fluid card-img-top" style="height:150px;" alt="image voiture" /></a>
+                <a href="{{ path('showone', {'id':car.id})}}"><img src="{{ asset('divers/images/' ~ car.image) }}" class="img-fluid card-img-top object-fit-cover" style="height:150px;" alt="image voiture" /></a>
                 <p class="card-text">{{ car.immat }}</p>
-                <a href="{{ path('revisions',{'id':car.id})}}" class="btn btn-primary">Révisions</a>
-                <a href="{{ path('reparations',{'id':car.id})}}" class="btn btn-secondary">Réparations</a>
+                <a href="{{ path('revisions',{'id':car.id})}}" class="btn btn-primary m-2">Révisions</a>
+                <a href="{{ path('reparations',{'id':car.id})}}" class="btn btn-secondary m-2">Réparations</a>
                 </div>
             </div>
             {% endfor %}

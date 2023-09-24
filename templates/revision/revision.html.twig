@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %} 
 {% block title %}Hello My Revisions!{% endblock %} 
 {% block body %}
-    <div class="container-fluid p-5"  style="background-image:url('divers/images/garage2.jpg');background-size: cover;">
-        <div class="row mt-5 mb-5">
+    <div class="container"  style="background-image:url('divers/images/doorGarage.jpg');background-size: cover;">
+        <div class="row d-flex justify-content-center p-3">
         {% for revision in revision %}
-        <div class="card m-3" style="width: 18rem; box-shadow: 5px 5px 1px">
+        <div class="card m-5 col-md-3" style="box-shadow: 10px 10px 5px">
             <div class="card-body">
                 <h5 class="card-title">Révision faite le {{ revision.datereviz }}</h5>
                 <p class="card-text">à {{ revision.kilometrage }} kms</p>

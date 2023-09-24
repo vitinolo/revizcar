@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}books!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5 mb-5 d-flex justify-content-center">     
+            <div class="col-md-8 card m-3" style="box-shadow: 10px 10px 5px;">
+                <div class="card-body">
+                    {% if car is empty %}
+                        <p>No car found for "{{ search_query }}".</p>
+                    {% else %}
+                        {% for car in car %}
+                        <li>
+                            La voiture 
+                            <a href="{{ path('showone', {'id': car.id}) }}" title="cliquer pour voir la voiture" aria-label="voir la voiture">{{ car.immat }}</a>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>     
+        </div>
+    </div>
+{% endblock %}

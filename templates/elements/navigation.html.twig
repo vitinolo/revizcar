@@ -1,22 +1,37 @@
   <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
     <div class="container">
-      <a class="navbar-brand" href="{{ path('app_car') }}">Let's Go to!</a>
+      <a class="navbar-brand" href="{{ path('app_home') }}">Let's Go to!</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item me-5">
-            <a class="nav-link" href="{{ path('app_car') }}" title="retour à l'accueil" aria-label="retour accueil">Home</a>
+            <a class="nav-link" href="{{ path('app_home') }}" title="retour à l'accueil" aria-label="retour accueil">Home</a>
           </li>
+          {% if app.user %}
+          <li class="nav-item me-5">
+            <a class="nav-link" href="{{ path('app_car') }}" title="voir les voitures" aria-label="voir les voitures">Cars</a>
+          </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link me-5" href="#">About</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-sm-2" type="search" placeholder="Search">
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        {% if app.request.attributes.get('_route') == 'app_home' %}
+        {% elseif app.request.attributes.get('_route') == 'app_car' %}
+          <form class="d-flex" method="GET" action="{{ path('search_car') }}">
+            <input class="form-control me-sm-2" type="search" placeholder="Trouver une voiture" name="car_immat">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        {# {% elseif app.request.attributes.get('_route') == 'kind' %}
+          <form class="d-flex" method="GET" action="{{ path('search_books_by_kind') }}">
+            <input class="form-control me-sm-2" type="search" placeholder="Find all books of kind" name="kind_name">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+          </form> #}
+        {% elseif app.request.attributes.get('_route') == 'about'%}
+          
+        {% endif %}
       </div>
     </div>
   </nav>

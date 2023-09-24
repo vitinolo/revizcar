@@ -19,7 +19,7 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {   
         //fixer le rôle le moins élévé
-        if($this->isGranted('ROLE_EDITOR')){
+        if($this->isGranted('ROLE_USER')){
         return $this->render('admin/dashboard.html.twig');
         }else
         return $this->redirectToRoute('app_car');
@@ -36,6 +36,24 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Go to site', 'fa-solid fa-arrow-rotate-left','app_car');
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         
+        if ($this->isGranted('ROLE_USER')){
+            yield MenuItem::section('Cars');
+            yield MenuItem::subMenu('Cars', 'fa-solid fa-car')->setSubItems([
+                MenuItem::linkToCrud('Create Car', 'fas fa-plus-circle', Car::class)->setAction(Crud::PAGE_NEW),
+            ]);
+        }
+        if ($this->isGranted('ROLE_USER')){
+            yield MenuItem::section('Revisions');
+            yield MenuItem::subMenu('Revisions', 'fa-solid fa-wrench')->setSubItems([
+                MenuItem::linkToCrud('Create Revision', 'fas fa-plus-circle', Revision::class)->setAction(Crud::PAGE_NEW),
+            ]);
+        }
+        if ($this->isGranted('ROLE_USER')){
+            yield MenuItem::section('Reparations');
+            yield MenuItem::subMenu('Reparations', 'fa-solid fa-screwdriver-wrench')->setSubItems([
+                MenuItem::linkToCrud('Create reparation', 'fas fa-plus-circle', reparation::class)->setAction(Crud::PAGE_NEW),
+            ]);
+        }
         if ($this->isGranted('ROLE_EDITOR')){
             yield MenuItem::section('Cars');
             yield MenuItem::subMenu('Cars', 'fa-solid fa-car')->setSubItems([

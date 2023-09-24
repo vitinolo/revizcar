@@ -5,14 +5,14 @@
 {% block body %}
     <div class="container">
         <div class="row mt-5 mb-5 d-flex justify-content-center">     
-            <div class="col-md-8 card m-3" style="box-shadow: 1px 1px 1px;max-width:1600px">
+            <div class="col-md-8 card m-3" style="box-shadow: 10px 10px 5px;">
                 <div class="card-body">
-                <img src="{{ asset('divers/images/' ~ car.image) }}" class="img-fluid card-img-top"style="width:500px;box-shadow: 10px 1px 10px;" alt="image d'un livre" />
-                <h5 class="card-title mt-3">{{ car.marque }} {{ car.modele }} </h5>
-                <p class="card-text">{{ car.immat }}</p>
-                <p class="card-text">{{ car.mec }}</p>
-                <p class="card-text">{{ car.puissance}} cv</p>
-                <p class="card-text">{{ car.carburant }}</p>
+                    <img src="{{ asset('divers/images/' ~ car.image) }}" class="img-fluid card-img-top" alt="image d'une voiture" />
+                    <h5 class="card-title mt-3">{{ car.marque }} {{ car.modele }} </h5>
+                    <p class="card-text">{{ car.immat }}</p>
+                    <p class="card-text">{{ car.mec }}</p>
+                    <p class="card-text">{{ car.puissance}} cv</p>
+                    <p class="card-text">{{ car.carburant }}</p>
                 </div>
             </div>     
         </div>

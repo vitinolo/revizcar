@@ -20,7 +20,15 @@ class CarRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Car::class);
     }
-
+// Ajoutez une méthode personnalisée pour rechercher des voitures par immatriculation
+public function findByImmat($immat)
+{
+    return $this->createQueryBuilder('c')
+        ->andWhere('c.immat = :immat')
+        ->setParameter('immat', $immat)
+        ->getQuery()
+        ->getResult();
+}
 //    /**
 //     * @return Car[] Returns an array of Car objects
 //     */
